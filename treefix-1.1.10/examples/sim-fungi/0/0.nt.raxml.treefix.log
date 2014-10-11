@@ -1,0 +1,691 @@
+TreeFix version: 1.1.10
+ 
+TreeFix executed with the following arguments: 
+treefix -s config/fungi.stree -S config/fungi.smap -A .nt.align -o .nt.raxml.tree -n .nt.raxml.treefix.tree -V 1 -l sim-fungi/0/0.nt.raxml.treefix.log sim-fungi/0/0.nt.raxml.tree
+ 
+Likelihood Model:	treefix.models.raxmlmodel.RAxMLModel (0.2.4) 
+Reconciliation Model:	treefix.models.duplossmodel.DupLossModel (1.0.1) 
+
+
+ 
+BEGIN Working on file 'sim-fungi/0/0.nt.raxml.tree':
+  random seed: 1411329023
+ 
+  BEGIN Optimizing cost model:
+  END   Optimizing cost model: 0.002s (2.000e-03s)
+   
+  BEGIN Checking for small input gene tree:
+     
+  END   Checking for small input gene tree: 0.000s (0.000e+00s)
+   
+  BEGIN Checking input gene tree cost:
+     
+  END   Checking input gene tree cost: 0.003s (3.000e-03s)
+   
+  BEGIN Optimizing likelihood model:
+  END   Optimizing likelihood model: 8.863s (8.863s)
+   
+  BEGIN Optimizing cost model:
+  END   Optimizing cost model: 0.002s (2.000e-03s)
+   
+  search: initial 
+  search: cost	= 15 
+  tree: (((((calb_36,ctro_37),(cpar_39,lelo_40)),dhan_43),clus_44),((((((scer_21,spar_22),smik_23),sbay_24),scas_26),cgla_25),(((((scer_10,spar_11),(smik_14,smik_13)),sbay_15),cgla_16),((kwal_32,kwal_31),agos_29))));
+ 
+  tree:
+                          /----  calb_36
+                    /----+
+                    |    \----  ctro_37
+               /----+
+               |    |    /----  cpar_39
+          /----+    \----+
+          |    |         \----  lelo_40
+     /----+    |
+     |    |    \----  dhan_43
+     |    |
+     |    \----  clus_44
+     |
+     |                             /----  scer_21
+     |                        /----+
+     |                   /----+    \----  spar_22
+     |                   |    |
+     |              /----+    \----  smik_23
++----+              |    |
+     |         /----+    \----  sbay_24
+     |         |    |
+     |    /----+    \----  scas_26
+     |    |    |
+     |    |    \----  cgla_25
+     |    |
+     |    |                        /----  scer_10
+     |    |                   /----+
+     |    |                   |    \----  spar_11
+     \----+              /----+
+          |              |    |    /----  smik_14
+          |         /----+    \----+
+          |         |    |         \----  smik_13
+          |    /----+    |
+          |    |    |    \----  sbay_15
+          |    |    |
+          \----+    \----  cgla_16
+               |
+               |         /----  kwal_32
+               |    /----+
+               \----+    \----  kwal_31
+                    |
+                    \----  agos_29
+
+ 
+  search: iter 0 
+  search: reject 
+   
+  search: iter 1 
+  search: accept 
+  search: cost	= 13 
+  search: pval	= 0.537155 
+  search: Dlnl	= -0.35395 
+  tree: (((((calb_36,ctro_37),(cpar_39,lelo_40)),dhan_43),clus_44),((((((((scer_10,spar_11),(smik_14,smik_13)),sbay_15),cgla_16),(((scer_21,spar_22),smik_23),sbay_24)),scas_26),cgla_25),((kwal_32,kwal_31),agos_29)));
+ 
+  tree:
+                          /----  calb_36
+                    /----+
+                    |    \----  ctro_37
+               /----+
+               |    |    /----  cpar_39
+          /----+    \----+
+          |    |         \----  lelo_40
+     /----+    |
+     |    |    \----  dhan_43
+     |    |
+     |    \----  clus_44
+     |
+     |                                       /----  scer_10
+     |                                  /----+
+     |                                  |    \----  spar_11
+     |                             /----+
+     |                             |    |    /----  smik_14
+     |                        /----+    \----+
+     |                        |    |         \----  smik_13
+     |                   /----+    |
++----+                   |    |    \----  sbay_15
+     |                   |    |
+     |                   |    \----  cgla_16
+     |              /----+
+     |              |    |              /----  scer_21
+     |              |    |         /----+
+     |              |    |    /----+    \----  spar_22
+     |         /----+    |    |    |
+     |         |    |    \----+    \----  smik_23
+     |         |    |         |
+     |    /----+    |         \----  sbay_24
+     |    |    |    |
+     |    |    |    \----  scas_26
+     |    |    |
+     \----+    \----  cgla_25
+          |
+          |         /----  kwal_32
+          |    /----+
+          \----+    \----  kwal_31
+               |
+               \----  agos_29
+
+ 
+   
+  search: iter 2 
+  search: empty pool 
+   
+  search: iter 3 
+  search: reject 
+   
+  search: iter 4 
+  search: accept 
+  search: cost	= 13 
+  search: pval	= 0.538294 
+  search: Dlnl	= -0.364005 
+  tree: (((((calb_36,ctro_37),(cpar_39,lelo_40)),dhan_43),clus_44),(((cgla_25,scas_26),(((((scer_10,spar_11),(smik_14,smik_13)),sbay_15),cgla_16),(((scer_21,spar_22),smik_23),sbay_24))),((kwal_32,kwal_31),agos_29)));
+ 
+  tree:
+                          /----  calb_36
+                    /----+
+                    |    \----  ctro_37
+               /----+
+               |    |    /----  cpar_39
+          /----+    \----+
+          |    |         \----  lelo_40
+     /----+    |
+     |    |    \----  dhan_43
+     |    |
+     |    \----  clus_44
+     |
+     |              /----  cgla_25
+     |         /----+
+     |         |    \----  scas_26
+     |         |
+     |         |                        /----  scer_10
+     |         |                   /----+
++----+         |                   |    \----  spar_11
+     |         |              /----+
+     |    /----+              |    |    /----  smik_14
+     |    |    |         /----+    \----+
+     |    |    |         |    |         \----  smik_13
+     |    |    |    /----+    |
+     |    |    |    |    |    \----  sbay_15
+     |    |    |    |    |
+     |    |    |    |    \----  cgla_16
+     |    |    \----+
+     |    |         |              /----  scer_21
+     \----+         |         /----+
+          |         |    /----+    \----  spar_22
+          |         |    |    |
+          |         \----+    \----  smik_23
+          |              |
+          |              \----  sbay_24
+          |
+          |         /----  kwal_32
+          |    /----+
+          \----+    \----  kwal_31
+               |
+               \----  agos_29
+
+ 
+   
+  search: iter 5 
+  search: reject 
+   
+  search: iter 6 
+  search: empty pool 
+   
+  search: iter 7 
+  search: reject 
+   
+  search: iter 8 
+  search: accept 
+  search: cost	= 9 
+  search: pval	= 0.506485 
+  search: Dlnl	= -0.0630096 
+  tree: (((clus_44,dhan_43),((calb_36,ctro_37),(cpar_39,lelo_40))),(((cgla_25,scas_26),(((((scer_10,spar_11),(smik_14,smik_13)),sbay_15),cgla_16),(((scer_21,spar_22),smik_23),sbay_24))),((kwal_32,kwal_31),agos_29)));
+ 
+  tree:
+                /----  clus_44
+          /----+
+          |    \----  dhan_43
+          |
+     /----+         /----  calb_36
+     |    |    /----+
+     |    |    |    \----  ctro_37
+     |    \----+
+     |         |    /----  cpar_39
+     |         \----+
+     |              \----  lelo_40
+     |
+     |              /----  cgla_25
+     |         /----+
+     |         |    \----  scas_26
+     |         |
++----+         |                        /----  scer_10
+     |         |                   /----+
+     |         |                   |    \----  spar_11
+     |         |              /----+
+     |    /----+              |    |    /----  smik_14
+     |    |    |         /----+    \----+
+     |    |    |         |    |         \----  smik_13
+     |    |    |    /----+    |
+     |    |    |    |    |    \----  sbay_15
+     |    |    |    |    |
+     |    |    |    |    \----  cgla_16
+     |    |    \----+
+     |    |         |              /----  scer_21
+     \----+         |         /----+
+          |         |    /----+    \----  spar_22
+          |         |    |    |
+          |         \----+    \----  smik_23
+          |              |
+          |              \----  sbay_24
+          |
+          |         /----  kwal_32
+          |    /----+
+          \----+    \----  kwal_31
+               |
+               \----  agos_29
+
+ 
+   
+  search: iter 9 
+  search: reject 
+   
+  search: iter 10 
+  search: accept 
+  search: cost	= 8 
+  search: pval	= 0.505415 
+  search: Dlnl	= -0.0527139 
+  tree: (((clus_44,dhan_43),((calb_36,ctro_37),(cpar_39,lelo_40))),(((cgla_25,(((((scer_10,spar_11),(smik_14,smik_13)),sbay_15),cgla_16),(((scer_21,spar_22),smik_23),sbay_24))),scas_26),((kwal_32,kwal_31),agos_29)));
+ 
+  tree:
+                /----  clus_44
+          /----+
+          |    \----  dhan_43
+          |
+     /----+         /----  calb_36
+     |    |    /----+
+     |    |    |    \----  ctro_37
+     |    \----+
+     |         |    /----  cpar_39
+     |         \----+
+     |              \----  lelo_40
+     |
+     |              /----  cgla_25
+     |              |
+     |              |                        /----  scer_10
+     |              |                   /----+
+     |              |                   |    \----  spar_11
+     |              |              /----+
++----+         /----+              |    |    /----  smik_14
+     |         |    |         /----+    \----+
+     |         |    |         |    |         \----  smik_13
+     |         |    |    /----+    |
+     |         |    |    |    |    \----  sbay_15
+     |         |    |    |    |
+     |         |    |    |    \----  cgla_16
+     |         |    \----+
+     |    /----+         |              /----  scer_21
+     |    |    |         |         /----+
+     |    |    |         |    /----+    \----  spar_22
+     |    |    |         |    |    |
+     |    |    |         \----+    \----  smik_23
+     |    |    |              |
+     \----+    |              \----  sbay_24
+          |    |
+          |    \----  scas_26
+          |
+          |         /----  kwal_32
+          |    /----+
+          \----+    \----  kwal_31
+               |
+               \----  agos_29
+
+ 
+   
+  search: iter 11 
+  search: empty pool 
+   
+  search: iter 12 
+  search: empty pool 
+   
+  search: iter 13 
+  search: empty pool 
+   
+  search: iter 14 
+  search: accept 
+  search: cost	= 5 
+  search: pval	= 0.502317 
+  search: Dlnl	= -0.0222555 
+  tree: (((clus_44,dhan_43),((calb_36,ctro_37),(cpar_39,lelo_40))),(((((((scer_10,spar_11),(smik_14,smik_13)),sbay_15),cgla_16),(cgla_25,(((scer_21,spar_22),smik_23),sbay_24))),scas_26),((kwal_32,kwal_31),agos_29)));
+ 
+  tree:
+                /----  clus_44
+          /----+
+          |    \----  dhan_43
+          |
+     /----+         /----  calb_36
+     |    |    /----+
+     |    |    |    \----  ctro_37
+     |    \----+
+     |         |    /----  cpar_39
+     |         \----+
+     |              \----  lelo_40
+     |
+     |                                  /----  scer_10
+     |                             /----+
+     |                             |    \----  spar_11
+     |                        /----+
+     |                        |    |    /----  smik_14
+     |                   /----+    \----+
++----+                   |    |         \----  smik_13
+     |              /----+    |
+     |              |    |    \----  sbay_15
+     |              |    |
+     |              |    \----  cgla_16
+     |         /----+
+     |         |    |    /----  cgla_25
+     |         |    |    |
+     |         |    |    |              /----  scer_21
+     |         |    \----+         /----+
+     |    /----+         |    /----+    \----  spar_22
+     |    |    |         |    |    |
+     |    |    |         \----+    \----  smik_23
+     |    |    |              |
+     |    |    |              \----  sbay_24
+     \----+    |
+          |    \----  scas_26
+          |
+          |         /----  kwal_32
+          |    /----+
+          \----+    \----  kwal_31
+               |
+               \----  agos_29
+
+ 
+   
+  search: iter 15 
+  search: empty pool 
+   
+  search: iter 16 
+  search: empty pool 
+   
+  search: iter 17 
+  search: empty pool 
+   
+  search: iter 18 
+  search: empty pool 
+   
+  search: iter 19 
+  search: empty pool 
+   
+  search: iter 20 
+  search: empty pool 
+   
+  search: iter 21 
+  search: empty pool 
+   
+  search: iter 22 
+  search: empty pool 
+   
+  search: iter 23 
+  search: empty pool 
+   
+  search: iter 24 
+  search: empty pool 
+   
+  search: iter 25 
+  search: empty pool 
+   
+  search: iter 26 
+  search: empty pool 
+   
+  search: iter 27 
+  search: empty pool 
+   
+  search: iter 28 
+  search: empty pool 
+   
+  search: iter 29 
+  search: empty pool 
+   
+  search: iter 30 
+  search: empty pool 
+   
+  search: iter 31 
+  search: empty pool 
+   
+  search: iter 32 
+  search: empty pool 
+   
+  search: iter 33 
+  search: empty pool 
+   
+  search: iter 34 
+  search: empty pool 
+   
+  search: iter 35 
+  search: empty pool 
+   
+  search: iter 36 
+  search: empty pool 
+   
+  search: iter 37 
+  search: empty pool 
+   
+  search: iter 38 
+  search: empty pool 
+   
+  search: iter 39 
+  search: empty pool 
+   
+  search: iter 40 
+  search: empty pool 
+   
+  search: iter 41 
+  search: empty pool 
+   
+  search: iter 42 
+  search: empty pool 
+   
+  search: iter 43 
+  search: empty pool 
+   
+  search: iter 44 
+  search: empty pool 
+   
+  search: iter 45 
+  search: empty pool 
+   
+  search: iter 46 
+  search: empty pool 
+   
+  search: iter 47 
+  search: empty pool 
+   
+  search: iter 48 
+  search: empty pool 
+   
+  search: iter 49 
+  search: empty pool 
+   
+  search: iter 50 
+  search: empty pool 
+   
+  search: iter 51 
+  search: empty pool 
+   
+  search: iter 52 
+  search: empty pool 
+   
+  search: iter 53 
+  search: empty pool 
+   
+  search: iter 54 
+  search: empty pool 
+   
+  search: iter 55 
+  search: empty pool 
+   
+  search: iter 56 
+  search: empty pool 
+   
+  search: iter 57 
+  search: empty pool 
+   
+  search: iter 58 
+  search: empty pool 
+   
+  search: iter 59 
+  search: empty pool 
+   
+  search: iter 60 
+  search: empty pool 
+   
+  search: iter 61 
+  search: empty pool 
+   
+  search: iter 62 
+  search: empty pool 
+   
+  search: iter 63 
+  search: empty pool 
+   
+  search: iter 64 
+  search: empty pool 
+   
+  search: iter 65 
+  search: empty pool 
+   
+  search: iter 66 
+  search: empty pool 
+   
+  search: iter 67 
+  search: empty pool 
+   
+  search: iter 68 
+  search: empty pool 
+   
+  search: iter 69 
+  search: empty pool 
+   
+  search: iter 70 
+  search: empty pool 
+   
+  search: iter 71 
+  search: empty pool 
+   
+  search: iter 72 
+  search: empty pool 
+   
+  search: iter 73 
+  search: empty pool 
+   
+  search: iter 74 
+  search: empty pool 
+   
+  search: iter 75 
+  search: empty pool 
+   
+  search: iter 76 
+  search: empty pool 
+   
+  search: iter 77 
+  search: empty pool 
+   
+  search: iter 78 
+  search: empty pool 
+   
+  search: iter 79 
+  search: empty pool 
+   
+  search: iter 80 
+  search: empty pool 
+   
+  search: iter 81 
+  search: empty pool 
+   
+  search: iter 82 
+  search: empty pool 
+   
+  search: iter 83 
+  search: empty pool 
+   
+  search: iter 84 
+  search: empty pool 
+   
+  search: iter 85 
+  search: empty pool 
+   
+  search: iter 86 
+  search: empty pool 
+   
+  search: iter 87 
+  search: empty pool 
+   
+  search: iter 88 
+  search: empty pool 
+   
+  search: iter 89 
+  search: empty pool 
+   
+  search: iter 90 
+  search: empty pool 
+   
+  search: iter 91 
+  search: empty pool 
+   
+  search: iter 92 
+  search: empty pool 
+   
+  search: iter 93 
+  search: empty pool 
+   
+  search: iter 94 
+  search: empty pool 
+   
+  search: iter 95 
+  search: empty pool 
+   
+  search: iter 96 
+  search: empty pool 
+   
+  search: iter 97 
+  search: empty pool 
+   
+  search: iter 98 
+  search: empty pool 
+   
+  search: iter 99 
+  search: empty pool 
+   
+  search: final 
+  search: changed	= yes 
+  search: init cost	= 15 
+  search: final cost	= 5 
+  search: pval	= 0.502317 
+  search: Dlnl	= -0.0222555 
+  tree: ((((calb_36,ctro_37),(cpar_39,lelo_40)),(clus_44,dhan_43)),(((((((scer_10,spar_11),(smik_14,smik_13)),sbay_15),cgla_16),((((scer_21,spar_22),smik_23),sbay_24),cgla_25)),scas_26),((kwal_32,kwal_31),agos_29)));
+ 
+  tree:
+                     /----  calb_36
+               /----+
+               |    \----  ctro_37
+          /----+
+          |    |    /----  cpar_39
+          |    \----+
+     /----+         \----  lelo_40
+     |    |
+     |    |    /----  clus_44
+     |    \----+
+     |         \----  dhan_43
+     |
+     |                                  /----  scer_10
+     |                             /----+
+     |                             |    \----  spar_11
+     |                        /----+
+     |                        |    |    /----  smik_14
+     |                   /----+    \----+
+     |                   |    |         \----  smik_13
++----+              /----+    |
+     |              |    |    \----  sbay_15
+     |              |    |
+     |              |    \----  cgla_16
+     |              |
+     |         /----+                   /----  scer_21
+     |         |    |              /----+
+     |         |    |         /----+    \----  spar_22
+     |         |    |         |    |
+     |         |    |    /----+    \----  smik_23
+     |    /----+    |    |    |
+     |    |    |    \----+    \----  sbay_24
+     |    |    |         |
+     |    |    |         \----  cgla_25
+     \----+    |
+          |    \----  scas_26
+          |
+          |         /----  kwal_32
+          |    /----+
+          \----+    \----  kwal_31
+               |
+               \----  agos_29
+
+ 
+   
+  num proposals:	3386 
+  num unique proposals:	3346 
+   
+  num reconroot:	161 
+  num diff reconroot:	110 
+  diff reconroot rate:	0.683230 
+   
+  proposal runtime:	0.905045 
+  reconroot runtime:	3.798219 
+  cost runtime:	12.246718 
+  statistic runtime:	6.908395 
+END   Working on file 'sim-fungi/0/0.nt.raxml.tree': 52.712s (52.712s)
+
+
+ 

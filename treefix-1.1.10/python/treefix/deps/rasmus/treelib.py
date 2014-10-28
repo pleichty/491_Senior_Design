@@ -48,6 +48,8 @@ except ImportError:
 #       parent:     TreeNode            // parent of node
 #       dist:       Int                 // edge length perhaps?
 #       data:       Dictionary{???:???} // KV map from who knows what to whatever else
+#                                       // This behavior is actually defined by Branch Data
+#                                       // By default, String: String mapping.
 #
 #   methods:
 #       __iter__: means is iterable over its own children.  reference https://wiki.python.org/moin/Iterator
@@ -159,6 +161,23 @@ class TreeNode (object):
         """Returns a representation of the node"""
         return "<node %s>" % self.name
 
+# Branch Data class outline
+#   comments:  read info in ivars its important
+#   ivars:
+#       None.  This class is more of a static class.  It has no instance variables
+#       Only methods.  It is passed into a Tree object, as a parameter for a data
+#       manager.  All data in any TreeNode, when using this manager, is by default boostrapped
+#       and therefore has key "boot"
+#
+#   methods: 
+#       get_branch_data:  gets data on a branch related to a node
+#
+#       set_branch_data:  set data of node to some other data
+#
+#       split_branch_data: makes two copies of branch data
+#
+#       merge_branch_data: if data of two nodes are the same, returns their commond data.
+#
 
 class BranchData (object):
     """A class for managing branch specific data for a Tree

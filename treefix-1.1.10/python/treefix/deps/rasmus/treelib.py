@@ -40,7 +40,27 @@ except ImportError:
 # Tree data structures
 #
 
-
+#   TreeNode class outline
+#   
+#   ivars:
+#       name:       String              // some identifier for specific node
+#       children:   List[TreeNode]      // children of this node
+#       parent:     TreeNode            // parent of node
+#       dist:       Int                 // edge length perhaps?
+#       data:       Dictionary{???:???} // KV map from who knows what to whatever else
+#
+#   methods:
+#       __iter__: means is iterable over its own children.  reference https://wiki.python.org/moin/Iterator
+#       copy:  deep capy
+#       is_leaf:
+#       recurse: takes a function handle, and applies that function to all of children, w/ params.
+#       leaves: returns leaf-set for this node.
+#       leaf_names:  names of leaf-set labels
+#       ancestors:  ancestors of this node
+#       descendants:    descendants of this node
+#       etc etc
+#       __repr__:  a sort of toString method
+#
 class TreeNode (object):
     """A class for nodes in a rooted Tree
 

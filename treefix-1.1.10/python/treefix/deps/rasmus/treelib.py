@@ -221,6 +221,44 @@ class BranchData (object):
         else:
             return {}
 
+# Tree class outline
+#       The tree class is insanely rich.  With many means to operate on it,
+#       one is sure to get lost in the class def.  So here's some comments.
+#
+#   ivars:
+#       nodes:          Dictionary{???:TreeNode}    // probably String->TreeNode
+#       root:           TreeNode
+#       nextname:       Int
+#       default_data:   Dictionary{???:???}         // probably String->String
+#       data:           Dictionary{???:???}         // again,   "     ->"
+#       branch_data:    BranchData
+#       name:           String
+#
+#   methods:
+#       __repr__:  toString method
+#       __init__:  setup dat tree son
+#       bunch of iterators...
+#       data functions...
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 
 class Tree (object):
     """

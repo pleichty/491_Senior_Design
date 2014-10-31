@@ -17,7 +17,7 @@ from compbio import phylo
 #=============================================================================
 
 class MulRFModel(CostModel):
-    """Computes Dup/Loss costs"""
+    """Computes Robinson-Foulds or MulRF costs"""
 
     def __init__(self, extra):
         """Initializes the model"""
@@ -53,9 +53,22 @@ class MulRFModel(CostModel):
             raise Exception("problem mapping gene tree to species tree")
 
     def recon_root(self, gtree, newCopy=True, returnCost=False):
-        """Reroots the tree by minimizing the duplication/loss cost"""
+        """Reroots the tree by minimizing the rf cost"""
         # TODO
     def compute_cost(self, gtree):
-        """Returns the duplication-loss cost"""
+        """Returns the rf cost"""
         # TODO
+
+
+
+
+
+
+
+
+
+
+
+
+        
 #cherry yum diddly dip

@@ -1,0 +1,105 @@
+TreeNode class outline
+   
+   ivars:
+       name:       String              // some identifier for specific node
+       children:   List[TreeNode]      // children of this node
+       parent:     TreeNode            // parent of node
+       dist:       Int                 // edge length perhaps?
+       data:       Dictionary{???:???} // KV map from who knows what to whatever else
+                                       // This behavior is actually defined by Branch Data
+                                       // By default, String: String mapping.
+
+   methods:
+       __iter__: means is iterable over its own children.  reference https://wiki.python.org/moin/Iterator
+       copy:  deep capy
+       is_leaf:
+       recurse: takes a function handle, and applies that function to all of children, w/ params.
+       leaves: returns leaf-set for this node.
+       leaf_names:  names of leaf-set labels
+       ancestors:  ancestors of this node
+       descendants:    descendants of this node
+       etc etc
+       __repr__:  a sort of toString method
+
+
+
+
+
+Branch Data class outline
+   comments:  read info in ivars its important
+   ivars:
+       None.  This class is more of a static class.  It has no instance variables
+       Only methods.  It is passed into a Tree object, as a parameter for a data
+       manager.  All data in any TreeNode, when using this manager, is by default boostrapped
+       and therefore has key "boot"
+
+   methods: 
+       get_branch_data:  gets data on a branch related to a node
+
+       set_branch_data:  set data of node to some other data
+
+       split_branch_data: makes two copies of branch data
+
+       merge_branch_data: if data of two nodes are the same, returns their commond data.
+
+
+
+
+
+Tree class outline
+       The tree class is insanely rich.  With many means to operate on it,
+       one is sure to get lost in the class def.  So here's some comments.
+
+   ivars:
+       nodes:          Dictionary{???:TreeNode}    // probably String->TreeNode
+       root:           TreeNode
+       nextname:       Int
+       default_data:   Dictionary{???:???}         // probably String->String
+       data:           Dictionary{???:???}         // again,   "     ->"
+       branch_data:    BranchData
+       name:           String
+
+   methods:
+       __repr__:  toString method
+       __init__:  setup dat tree son
+       
+      iterator functions:  these functions are python necessities
+        in order to perform the automated iterations, i.e. "for x in tree:"
+        usually, most important are the __iter__, and __next__ methods, however
+        this Tree simply uses its list of nodes for iterables.  Note that anytime
+        a class ipmlements a __functionhandle__ type method, that method is never
+        called directly in code, but instead is a backend coordinator.  getitem
+        and set item become rather obvious in nature then.  this link explains
+        python lambda functions, their just like any other lambda calculus
+        function though.  http://www.secnetix.de/olli/Python/lambda_functions.hawk
+        final note: this is_leaf=lambda ... is the default.  We can, of course, hand in
+        a different lambda function for is_leaf at runtime.
+
+      structural functions:
+       preorder: preorder tree traversal.  don't freak out about the is_leaf lambda stuff.
+        its just assigning the function is_leaf to call node.is_leaf for whatever node
+        it gets handed.
+
+       postorder: postorder traversal.
+
+       inorder: inorder traversal.
+
+       make_root:  makes new root node
+
+       add, add_child: add "generally" adds node to tree, add_child puts it in a specific location
+
+       !!! remove, remove_child:  unsure on the distinction between these two functions
+
+       remove_tree: remove's a subtree, select-node inclusive.
+
+       clear: delete tree
+
+      data functions:
+       has_data: looks for dataname in default_data set
+       copy_data: puts data from this tree into another tree
+       copy_node_data: like copy_data, but node specific
+       set_default_data: change the list of default data
+       clear_data: empty default_data set
+
+      branch_data functions: straight forwrad
+      i/o functions: straight forward

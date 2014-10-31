@@ -26,42 +26,36 @@ class MulRFModel(CostModel):
         self.VERSION = "1.0.1"
         self.mincost = 0
 
-        parser = optparse.OptionParser(prog="DupLossModel")
-        parser.add_option("-D", "--dupcost", dest="dupcost",
-                          metavar="<dup cost>",
+        parser = optparse.OptionParser(prog="MulRFModel")
+        parser.add_option("-R", "--rfcost", dest="rfcost",
+                          metavar="<robinson foulds cost>",
                           default=1.0, type="float",
-                          help="duplication cost (default: 1.0)")
-        parser.add_option("-L", "--losscost", dest="losscost",
-                          metavar="<loss cost>",
-                          default=1.0, type="float",
-                          help="loss cost (default: 1.0)")
+                          help="robinson-foulds cost (default: 1.0)")
         self.parser = parser
 
         CostModel._parse_args(self, extra)
 
     def optimize_model(self, gtree, stree, gene2species):
         """Optimizes the model"""
-        # CostModel.optimize_model(self, gtree, stree, gene2species)
+        CostModel.optimize_model(self, gtree, stree, gene2species)
 
-        # if self.dupcost < 0:
-        #     self.parser.error("-D/--dupcost must be >= 0")
-        # if self.losscost < 0:
-        #     self.parser.error("-L/--losscost must be >= 0")
+        if self.rfcost < 0:
+            self.parser.error("-RF/--rfcost must be >= 0")
 
-        # # ensure gtree and stree are both rooted and binary
-        # if not (treelib.is_rooted(gtree) and treelib.is_binary(gtree)):
-        #     raise Exception("gene tree must be rooted and binary")
-        # if not (treelib.is_rooted(stree) and treelib.is_binary(stree)):
-        #     raise Exception("species tree must be rooted and binary")
-        # try:
-        #     junk = phylo.reconcile(gtree, stree, gene2species)
-        # except:
-        #     raise Exception("problem mapping gene tree to species tree")
+        # ensure gtree and stree are both rooted and binary
+        if not (treelib.is_rooted(gtree) and treelib.is_binary(gtree)):
+            raise Exception("gene tree must be rooted and binary")
+        if not (treelib.is_rooted(stree) and treelib.is_binary(stree)):
+            raise Exception("species tree must be rooted and binary")
+        try:
+            junk = phylo.reconcile(gtree, stree, gene2species)
+        except:
+            raise Exception("problem mapping gene tree to species tree")
 
     def recon_root(self, gtree, newCopy=True, returnCost=False):
         """Reroots the tree by minimizing the duplication/loss cost"""
-        
-
+        # TODO
     def compute_cost(self, gtree):
         """Returns the duplication-loss cost"""
-        
+        # TODO
+#cherry yum diddly dip

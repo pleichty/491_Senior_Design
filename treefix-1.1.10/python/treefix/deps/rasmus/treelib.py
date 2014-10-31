@@ -237,27 +237,47 @@ class BranchData (object):
 #   methods:
 #       __repr__:  toString method
 #       __init__:  setup dat tree son
-#       bunch of iterators...
-#       data functions...
+#       
+#      iterator functions:  these functions are python necessities
+#        in order to perform the automated iterations, i.e. "for x in tree:"
+#        usually, most important are the __iter__, and __next__ methods, however
+#        this Tree simply uses its list of nodes for iterables.  Note that anytime
+#        a class ipmlements a __functionhandle__ type method, that method is never
+#        called directly in code, but instead is a backend coordinator.  getitem
+#        and set item become rather obvious in nature then.  this link explains
+#        python lambda functions, their just like any other lambda calculus
+#        function though.  http://www.secnetix.de/olli/Python/lambda_functions.hawk
+#        final note: this is_leaf=lambda ... is the default.  We can, of course, hand in
+#        a different lambda function for is_leaf at runtime.
 #
+#      structural functions:
+#       preorder: preorder tree traversal.  don't freak out about the is_leaf lambda stuff.
+#        its just assigning the function is_leaf to call node.is_leaf for whatever node
+#        it gets handed.
 #
+#       postorder: postorder traversal.
 #
+#       inorder: inorder traversal.
 #
+#       make_root:  makes new root node
 #
+#       add, add_child: add "generally" adds node to tree, add_child puts it in a specific location
 #
+#       !!! remove, remove_child:  unsure on the distinction between these two functions
 #
+#       remove_tree: remove's a subtree, select-node inclusive.
 #
+#       clear: delete tree
 #
+#      data functions:
+#       has_data: looks for dataname in default_data set
+#       copy_data: puts data from this tree into another tree
+#       copy_node_data: like copy_data, but node specific
+#       set_default_data: change the list of default data
+#       clear_data: empty default_data set
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
+#      branch_data functions: straight forwrad
+#      i/o functions: straight forward
 #
 
 class Tree (object):
@@ -445,8 +465,7 @@ class Tree (object):
         (use remove instead).
         """
 
-        assert parent != child and child.parent == parent, (
-            parent.name, child.name)
+        assert parent != child and child.parent == parent, (parent.name, child.name)
         parent.children.remove(child)
         child.parent = None
 

@@ -54,7 +54,17 @@ class MulRFModel(CostModel):
 
     def recon_root(self, gtree, newCopy=True, returnCost=False):
         """Reroots the tree by minimizing the rf cost"""
+        # assert valid inputs
+        assert rootby in ["rf","mulrf"], "unknown rootby value '%s'" % rootby
+        assert rfcost >= 0
+
+        # make a consistent unrooted copy of gene tree
+        if newCopy:
+            gtree = gtree.copy()
+
         # TODO
+        
+
     def compute_cost(self, gtree):
         """Returns the rf cost"""
         # TODO

@@ -25,7 +25,7 @@ class MulRFModel(CostModel):
 
         self.VERSION = "1.0.1"
         self.mincost = 0
-
+        self.duplist = []
         parser = optparse.OptionParser(prog="MulRFModel")
         parser.add_option("-R", "--rfcost", dest="rfcost",
                           metavar="<robinson foulds cost>",
@@ -38,7 +38,19 @@ class MulRFModel(CostModel):
     def optimize_model(self, gtree, stree, gene2species):
         """Optimizes the model"""
         CostModel.optimize_model(self, gtree, stree, gene2species)
-
+        
+        #Checking for Duplications in the stree
+        index = 0
+        list = []
+        for x in self.leaves():
+            if x not in list:
+                list.append(x)
+            else
+                if x in list & x not in self.duplist:
+                    self.duplist.append(x)
+        #end of duplication check
+        #need to implement gtree transform
+        
         if self.rfcost < 0:
             self.parser.error("-RF/--rfcost must be >= 0")
 

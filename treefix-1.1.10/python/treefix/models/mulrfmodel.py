@@ -26,14 +26,14 @@ class MulRFModel(CostModel):
         self.VERSION = "1.0.1"
         self.mincost = 0
         
-        parser = optparse.OptionParser(prog="MulRFModel")
-        parser.add_option("-R", "--rfcost", dest="rfcost",
-                          metavar="<robinson foulds cost>",
-                          default=1.0, type="float",
-                          help="robinson-foulds cost (default: 1.0)")
-        self.parser = parser
+        # parser = optparse.OptionParser(prog="MulRFModel")
+        # parser.add_option("-R", "--rfcost", dest="rfcost",
+                          # metavar="<robinson foulds cost>",
+                          # default=1.0, type="float",
+                          # help="robinson-foulds cost (default: 1.0)")
+        # self.parser = parser
 
-        CostModel._parse_args(self, extra)
+        # CostModel._parse_args(self, extra)
 
     def optimize_model(self, gtree, stree, gene2species):
         """Optimizes the model"""

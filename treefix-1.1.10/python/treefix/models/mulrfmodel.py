@@ -1,5 +1,5 @@
 #
-# Python module for duploss cost
+# Python module for robinson foulds cost
 #
 
 # treefix libraries
@@ -67,7 +67,23 @@ class MulRFModel(CostModel):
 
     def compute_cost(self, gtree):
         """Returns the rf cost"""
-        # TODO
+        recon = phylo.reconcile(gtree, self.stree, self.gene2species)
+        
+        #rf_cost = recon.size
+        #for every node in recon:
+        #   for every othernode in recon.dropLeft(index.nodeIn(recon)):
+        #       if there exists an inverse for this key-value pair, subtract 2  
+        #       from recon cost.
+
+        rf_cost = len(recon)
+        recon_relevant = recon.copy()
+        for node_key, node_value in recon.items():
+            recon_relevant.pop(node_key, node_value)
+            for othernode_key, othernode_value in recon_relevant.items():
+                if (node_key is othernode_value) and (node_value is othernode_key):
+                    rf_cost = rf_cost - 2
+        
+        return rf_cost
 
 
 

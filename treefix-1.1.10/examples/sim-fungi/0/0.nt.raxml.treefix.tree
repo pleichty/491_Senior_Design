@@ -2,38 +2,6 @@
  (
   (
    (
-    calb_36,
-    ctro_37
-   ),
-   (
-    cpar_39,
-    lelo_40
-   )
-  ),
-  (
-   clus_44,
-   dhan_43
-  )
- ),
- (
-  (
-   (
-    (
-     (
-      (
-       (
-        scer_10,
-        spar_11
-       ),
-       (
-        smik_14,
-        smik_13
-       )
-      ),
-      sbay_15
-     ),
-     cgla_16
-    ),
     (
      (
       (
@@ -45,17 +13,49 @@
       ),
       sbay_24
      ),
-     cgla_25
-    )
+     scas_26
+    ),
+    cgla_25
    ),
-   scas_26
+   (
+    (
+     (
+      (
+       calb_36,
+       ctro_37
+      ),
+      (
+       cpar_39,
+       lelo_40
+      )
+     ),
+     dhan_43
+    ),
+    clus_44
+   )
   ),
   (
    (
-    kwal_32,
-    kwal_31
+    (
+     (
+      scer_10,
+      spar_11
+     ),
+     (
+      smik_14,
+      smik_13
+     )
+    ),
+    sbay_15
    ),
-   agos_29
+   cgla_16
   )
+ ),
+ (
+  (
+   kwal_32,
+   kwal_31
+  ),
+  agos_29
  )
 );

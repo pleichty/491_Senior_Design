@@ -71,10 +71,8 @@ class MulRFModel(CostModel):
         recon_relevant = recon.copy()
         for node_key, node_value in recon.items():
             if not node_key.name is node_value.name:
-                rf_cost += 2
-        #
-        #   another implementation...
-        # 
+                rf_cost += 1
+         
         # for node_key, node_value in recon.items():
         #     recon_relevant.pop(node_key, node_value)
         #     for othernode_key, othernode_value in recon_relevant.items():

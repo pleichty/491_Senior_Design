@@ -42,45 +42,69 @@ class MulRFModel(CostModel):
         except:
             raise Exception("problem mapping gene tree to species tree")
     
-        treeout = StringIO.StringIO()
-        if not self.printed:
-            import pprint
-            treelib.draw_tree(gtree, out=treeout, minlen=5, maxlen=5)
-            print "gene tree:\n"
-            print(treeout.getvalue())
-            
-            treelib.draw_tree(self.stree, out=treeout, minlen=5, maxlen=5)
-            print "spec tree:\n"
-            print(treeout.getvalue())
-            pprint.pprint(junk)
-
-            self.printed = True
+        
 
     
     def compute_cost(self, gtree):
         """Returns the rf cost"""
-        recon = phylo.reconcile(gtree, self.stree, self.gene2species)
+
+        recon = phylo.reconcile(gtree, self.stree, self.gene2species)            
         
-        #rf_cost = recon.size
-        #for every node in recon:
-        #   for every othernode in recon.dropLeft(index.nodeIn(recon)):
-        #       if there exists an inverse for this key-value pair, subtract 2  
-        #       from recon cost.
+        def lca(node, lca_dict):
+            """Creates a dictionary of (node, lca) pairs from given tree"""
+            if node.is_leaf():
+                lca_dict[node] = []
+                lca_dict[node].append(node)
+            
+            else:
+                lca_dict[node] = []
+                for child in node.children:
+                    lca(child, lca_dict)
+                    for x in lca_dict[child]:
+                        lca_dict[node].append(x)
         
-        rf_cost = 0
-        recon_relevant = recon.copy()
-        for node_key, node_value in recon.items():
-            if not node_key.name is node_value.name:
-                rf_cost += 2
-        #
-        #   another implementation...
-        # 
-        # for node_key, node_value in recon.items():
-        #     recon_relevant.pop(node_key, node_value)
-        #     for othernode_key, othernode_value in recon_relevant.items():
-        #         if (node_key.name is othernode_value.name) and (node_value.name is othernode_key.name):
-        #             rf_cost -= 2
+        stree_lca_dict = {}
+        gtree_lca_dict = {}
+        lca(self.stree.root, stree_lca_dict)
+        lca(gtree.root, gtree_lca_dict)
         
-        return rf_cost
+        cost = (len(stree_lca_dict) - len(self.stree.leaves()) - 1) * 2
+        
+        # Removes root and leave node from list, we can save alot of compute time by leaving them in the list and checking to make sure we 
+        # dont query them
+        #del stree_lca_dict[self.stree.root]
+        #for node in self.stree.leaves():
+        #   del stree_lca_dict[node]
+        
+        for sNode in stree_lca_dict:
+            for gNode in gtree_lca_dict:
+                
+                #Used to evaluate if the lca matches exactly.
+                stree_lca = []
+                for x in stree_lca_dict[sNode]:
+                    stree_lca.append(x)
+                    
+                match = True
+                if len( stree_lca) == len(gtree_lca_dict[gNode]) and len( stree_lca) > 1 and gNode != gtree.root:
+                    for node in gtree_lca_dict[gNode]:
+                        if recon[node] not in stree_lca:
+                            match = False
+                            break
+                        else:
+                            stree_lca.remove(recon[node])
+                    
+                    if match:
+                        cost = cost - 2
+                                
+                    #print stree_lca_dict[k]
+                    #print gtree_lca_dict[l]
+                    #print match
+                    #print
+
+        #raw_input("Press Enter to continue...") 
+            
+        #print >> self.g, cost 
+        
+        return cost
      
 #cherry yum diddly dip

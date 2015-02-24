@@ -27,8 +27,8 @@ class MulRFModel(CostModel):
 
         self.VERSION = "1.0.1"
         self.mincost = 0
-        self.printed = False
-        self.g = open('gtree.tree', 'w')
+        self.count = 0
+        self.log = open('matched.txt', 'w')
         
     def optimize_model(self, gtree, stree, gene2species):
         """Optimizes the model"""
@@ -53,29 +53,40 @@ class MulRFModel(CostModel):
         streeCopy = self.stree.copy()
         
         def recon_dup(stree, gtree, recon, dup):
-            #Recon plus find duplications in gene tree
-            for node in gtree.leaves():
+            #Recon plus find duplications in gene tree, for each gene tree leaf we map it to a stree leaf, we also keep track of duplications in the gene tree 
+            leaves = gtree.leaves()
+            for node in leaves:
                 sNode = stree.nodes[self.gene2species(node.name)]
                 recon[node] = sNode
                 if not sNode in dup:
                     dup[sNode] = []
                 dup[sNode].append(node)
-                
+                   
         def duplicate_nodes(tree, find_dup):
             #make modifications to the streeCopy to acount for duplications
             
             leaves = tree.leaves()
             for node in leaves:
                 if node in find_dup and len(find_dup[node]) > 1:
+                    #remove node from the parent's children list, create a new parent and append it the the old parent's children list 
                     node.parent.children.remove(node)
                     parent = treelib.TreeNode(name = streeCopy.new_name())
                     node.parent.children.append(parent)
                 
                     count = 0 
+                    #add a copy of the node to the new parent for each copy in the gene tree
+                    append = parent.children.append
                     while count < len(find_dup[node]):
                         count = count + 1
-                        parent.children.append(node.copy(parent = parent))
+                        append(node)
+         
+        def printLca(tree, lca):
 
+            for node in lca:
+                if  len(node.leaves()) > 1 and (node is not tree.root):
+                    print >> self.log, node
+                    print >> self.log, lca[node]
+        
         #LCA method 
         def lca(node, lca_dict):
             """Creates a dictionary of (node, lca) pairs from given tree"""
@@ -85,71 +96,73 @@ class MulRFModel(CostModel):
             
             else:
                 lca_dict[node] = []
+                append = lca_dict[node].append
                 for child in node.children:
                     lca(child, lca_dict)
                     for x in lca_dict[child]:
-                        lca_dict[node].append(x)
-        
-        #recon_dup(streeCopy, gtree, recon, find_dup)
-        recon_dup(self.stree, gtree, recon, find_dup)
-        #duplicate_nodes(streeCopy, find_dup)
-                
-                
+                        append(x)
+
         stree_lca_dict = {}
         gtree_lca_dict = {}
         
-        #Using self.stree
-        if False:
-            recon_dup(self.stree, gtree, recon, find_dup)
-            lca(self.stree.root, stree_lca_dict)
-            lca(gtree.root, gtree_lca_dict)
-            cost = (len(stree_lca_dict) - len(self.stree.leaves()) - 1) * 2
-            
-            
+        recon_dup(streeCopy, gtree, recon, find_dup)
+        duplicate_nodes(streeCopy, find_dup)
+        lca(gtree.root, gtree_lca_dict)
+        lca(streeCopy.root, stree_lca_dict)
+                        
+        # used to determine the number of leaves in the lca in order to correctly calculate the cost
+        #streeLeaveCount = 0
+        #for node in stree_lca_dict:
+            #if len(stree_lca_dict[node]) == 1:
+                #streeLeaveCount = streeLeaveCount + 1;
+         
+        cost = len(stree_lca_dict) + (len(gtree_lca_dict) - len(gtree.leaves()) - 1 )
         
-        #Using streeCopy
-        if True:
-            recon_dup(streeCopy, gtree, recon, find_dup)
-            duplicate_nodes(streeCopy, find_dup)
-            lca(streeCopy.root, stree_lca_dict)
-            lca(gtree.root, gtree_lca_dict)
-            cost = (len(stree_lca_dict) - len(streeCopy.leaves()) - 1) * 2
-          
-        # cost equals number of internal nodes from each tree
-        cost = (len(stree_lca_dict) - len(streeCopy.leaves()) - 1 ) + (len(gtree_lca_dict) - len(gtree.leaves()) - 1 ) 
+        #print >> self.log, self.count
+        #print >> self.log, "STree"
+        #treelib.draw_tree(streeCopy, out=self.log, minlen=5, maxlen=5)  
+        #print >> self.log, "GTree"
+        #treelib.draw_tree(gtree, out=self.log, minlen=5, maxlen=5)  
         
-        # Removes root and leave node from list, we can save alot of compute time by leaving them in the list and checking to make sure we 
-        # dont query them
-        #del stree_lca_dict[self.stree.root]
-        #for node in self.stree.leaves():
-        #   del stree_lca_dict[node]
         
         for sNode in stree_lca_dict:
-            # if is root or leaf continue: ??
-            for gNode in gtree_lca_dict:
-                
-                #Used to evaluate if the lca matches exactly.
-                stree_lca = []
-                for x in stree_lca_dict[sNode]:
-                    stree_lca.append(x)
+            #check leaf or root
+            if len(stree_lca_dict[sNode]) > 1 and sNode != streeCopy.root:
+                for gNode in gtree_lca_dict:
+                    if len(stree_lca_dict[sNode]) == len(gtree_lca_dict[gNode]) and gNode != gtree.root:
                     
-                match = True
-                if len( stree_lca) == len(gtree_lca_dict[gNode]) and len( stree_lca) > 1 and gNode != gtree.root and sNode != streeCopy.root:
-                    for node in gtree_lca_dict[gNode]:
-                        if recon[node] not in stree_lca:
-                            match = False
-                            break
-                        else:
-                            stree_lca.remove(recon[node])
+                        #Used to evaluate if the lca matches exactly.
+                        stree_lca = []
+                        for x in stree_lca_dict[sNode]:
+                            stree_lca.append(x)
                     
-                    if match:
-                        cost = cost - 2
-
+                        match = True
+                    
+                        for node in gtree_lca_dict[gNode]:
+                            if recon[node] not in stree_lca:
+                                match = False
+                                break
+                            else:
+                                stree_lca.remove(recon[node])
+                    
+                        if match:
+                            #print >> self.log, stree_lca_dict[sNode]
+                            cost = cost - 2
+            #if node is a leaf or the root we subtract one, because we dont count the them 
+            else:
+                cost  = cost - 1
+       
         
-        #raw_input("Press Enter to continue...") 
-        treelib.draw_tree(gtree, out=self.g, minlen=5, maxlen=5)    
-        print >> self.g, cost 
-        #print cost
+        #print >> self.log, "STree Lca"
+        #printLca(streeCopy, stree_lca_dict)
+        #print >> self.log, "GTree Lca"
+        #printLca(gtree, gtree_lca_dict)
+        #print >> self.log, cost
+        #print >> self.log, ""         
+        #self.count = self.count + 1
+        #print cost 
+        #raw_input("Press Enter to continue...")
         return cost
      
+
 #cherry yum diddly dip

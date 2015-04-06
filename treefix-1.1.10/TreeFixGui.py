@@ -35,6 +35,7 @@ def createScript():
     if ddModel.get() == "MulRF":
         cmd += " --smodule treefix.models.mulrfmodel.MulRFModel"
     tOutput.insert(END, "Running TreeFix:\n" + cmd + "\n")
+    
     return cmd
 
 def getSaveFileName(bindingVar):
@@ -57,8 +58,9 @@ def popenAndCall():
                 break
         tOutput.insert(END , "Completed\n")
         return
+    
     cmd = createScript()
-    thread = threading.Thread(target=runInThread, args=(cmd))
+    thread = threading.Thread(target=runInThread, args=(cmd,))
     thread.start()
     return thread
  
@@ -67,7 +69,7 @@ def showMessage():
  
 def saveScript():
     fileName = asksaveasfilename(parent=window) 
-    showMessage()
+    #showMessage()
     file = open(fileName, "a")
     file.write(createScript())
  

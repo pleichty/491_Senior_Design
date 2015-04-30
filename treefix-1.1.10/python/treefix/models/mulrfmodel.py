@@ -109,20 +109,8 @@ class MulRFModel(CostModel):
         duplicate_nodes(streeCopy, find_dup)
         lca(gtree.root, gtree_lca_dict)
         lca(streeCopy.root, stree_lca_dict)
-                        
-        # used to determine the number of leaves in the lca in order to correctly calculate the cost
-        #streeLeaveCount = 0
-        #for node in stree_lca_dict:
-            #if len(stree_lca_dict[node]) == 1:
-                #streeLeaveCount = streeLeaveCount + 1;
-         
+                     
         cost = len(stree_lca_dict) + (len(gtree_lca_dict) - len(gtree.leaves()) - 1 )
-        
-        #print >> self.log, self.count
-        #print >> self.log, "STree"
-        #treelib.draw_tree(streeCopy, out=self.log, minlen=5, maxlen=5)  
-        #print >> self.log, "GTree"
-        #treelib.draw_tree(gtree, out=self.log, minlen=5, maxlen=5)  
         
         
         for sNode in stree_lca_dict:
@@ -153,16 +141,5 @@ class MulRFModel(CostModel):
                 cost  = cost - 1
        
         
-        #print >> self.log, "STree Lca"
-        #printLca(streeCopy, stree_lca_dict)
-        #print >> self.log, "GTree Lca"
-        #printLca(gtree, gtree_lca_dict)
-        #print >> self.log, cost
-        #print >> self.log, ""         
-        #self.count = self.count + 1
-        #print cost 
-        #raw_input("Press Enter to continue...")
         return cost
      
-
-#cherry yum diddly dip
